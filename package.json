@@ -4,7 +4,8 @@
   "description": "Custom React Datepicker component",
   "main": "index.js",
   "scripts": {
-    "prepack": "tsc"
+    "prepack": "tsc",
+    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\""
   },
   "author": "energywraith",
   "license": "ISC",
@@ -14,6 +15,11 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "typescript": "^5.3.3"
   }
 }
