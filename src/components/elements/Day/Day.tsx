@@ -1,5 +1,5 @@
 import React, { HTMLProps } from 'react'
-import { classNames } from '../../../lib/classnames'
+import { classNames } from '../../../lib/classNames'
 
 interface DayClasses {
   root?: string
