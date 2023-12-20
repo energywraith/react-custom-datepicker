@@ -10,7 +10,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    day: { control: 'number' },
+    children: { control: 'number' },
     disabled: { control: 'boolean' },
     isActive: { control: 'boolean' },
     isToday: { control: 'boolean' },
@@ -25,37 +25,43 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const Default: Story = {
+  args: {
+    children: 13,
+  },
+}
+
 export const Active: Story = {
   args: {
-    day: 13,
+    children: 13,
     isActive: true,
   },
 }
 
 export const Today: Story = {
   args: {
-    day: 13,
+    children: 13,
     isToday: true,
   },
 }
 
 export const InRange: Story = {
   args: {
-    day: 13,
+    children: 13,
     isInRange: true,
   },
 }
 
 export const Disabled: Story = {
   args: {
-    day: 13,
+    children: 13,
     disabled: true,
   },
 }
 
 export const Custom: Story = {
   args: {
-    day: 13,
+    children: 13,
     isActive: true,
     isToday: true,
     activeClasses: { root: 'bg-red-600 !text-white', underline: 'bg-white' },
