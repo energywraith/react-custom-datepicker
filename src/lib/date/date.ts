@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
 import weekday from 'dayjs/plugin/weekday'
-import { TWeekDays, TWeekDay } from './types'
+import { TWeekDays, TWeekDay, TMonths, TMonth } from './types'
 
 dayjs.extend(isoWeek)
 dayjs.extend(weekday)
@@ -21,4 +21,10 @@ export const getWeekDays = ({ weekDaysMap, isoWeek }: { weekDaysMap?: TWeekDays;
 
     return mappedDay || day.format('ddd')
   })
+}
+
+export const getMonthName = ({ month, monthsMap }: { month: number; monthsMap?: TMonths }) => {
+  const monthName = dayjs().month(month).format('MMMM')
+
+  return monthsMap?.[monthName as TMonth] || monthName
 }

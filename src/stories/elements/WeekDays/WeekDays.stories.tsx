@@ -54,18 +54,10 @@ export const customNames: Story = {
 
 export const custom: Story = {
   args: {
-    isoWeek: true,
+    ...customNames.args,
+    ...isoWeek.args,
     classes: {
       root: 'bg-blue-600 !text-white',
-    },
-    customNames: {
-      Monday: 'Pon.',
-      Tuesday: 'Wt.',
-      Wednesday: 'Śr.',
-      Thursday: 'Czw.',
-      Friday: 'Pt.',
-      Saturday: 'Sob.',
-      Sunday: 'Niedz.',
     },
   },
 }

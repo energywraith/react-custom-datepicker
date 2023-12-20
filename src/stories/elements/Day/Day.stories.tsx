@@ -10,7 +10,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    children: { control: 'number' },
+    children: { control: { type: 'number', min: 1, max: 31 } },
     disabled: { control: 'boolean' },
     isActive: { control: 'boolean' },
     isToday: { control: 'boolean' },
@@ -33,35 +33,35 @@ export const Default: Story = {
 
 export const Active: Story = {
   args: {
-    children: 13,
+    ...Default.args,
     isActive: true,
   },
 }
 
 export const Today: Story = {
   args: {
-    children: 13,
+    ...Default.args,
     isToday: true,
   },
 }
 
 export const InRange: Story = {
   args: {
-    children: 13,
+    ...Default.args,
     isInRange: true,
   },
 }
 
 export const Disabled: Story = {
   args: {
-    children: 13,
+    ...Default.args,
     disabled: true,
   },
 }
 
 export const Custom: Story = {
   args: {
-    children: 13,
+    ...Default.args,
     isActive: true,
     isToday: true,
     activeClasses: { root: 'bg-red-600 !text-white', underline: 'bg-white' },
