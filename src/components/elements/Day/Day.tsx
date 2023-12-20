@@ -1,12 +1,13 @@
-import React, { HTMLProps } from 'react'
+import React from 'react'
 import { classNames } from '../../../lib/classNames'
+import { Button, IButtonProps } from '../Button'
 
 export interface IDayClasses {
   root?: string
   underline?: string
 }
 
-interface IDayProps extends HTMLProps<HTMLButtonElement> {
+interface IDayProps extends IButtonProps {
   isActive?: boolean
   isToday?: boolean
   isInRange?: boolean
@@ -28,11 +29,11 @@ const Day = ({
   onClick,
 }: IDayProps) => {
   return (
-    <button
+    <Button
       type='button'
       disabled={disabled}
       className={classNames(
-        'text-sm text-gray-700 w-9 h-9 rounded-md disabled:text-gray-400',
+        'w-9 h-9 border-none p-0 hover:bg-transparent',
         classes?.root,
         isActive
           ? classNames('bg-blue-600 text-white disabled:bg-neutral-200 disabled:text-gray-400', activeClasses?.root)
@@ -51,7 +52,7 @@ const Day = ({
           !isToday ? classNames('hidden', todayClasses?.underline) : null,
         )}
       ></div>
-    </button>
+    </Button>
   )
 }
 
