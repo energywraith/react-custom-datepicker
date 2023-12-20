@@ -1,24 +1,23 @@
 import React, { HTMLProps } from 'react'
 import { classNames } from '../../../lib/classNames'
 
-interface DayClasses {
+export interface IDayClasses {
   root?: string
   underline?: string
 }
 
-interface DayProps extends HTMLProps<HTMLButtonElement> {
-  day: number
+interface IDayProps extends HTMLProps<HTMLButtonElement> {
   isActive?: boolean
   isToday?: boolean
   isInRange?: boolean
-  classes?: DayClasses
-  activeClasses?: DayClasses
-  todayClasses?: DayClasses
-  inRangeClasses?: DayClasses
+  classes?: IDayClasses
+  activeClasses?: IDayClasses
+  todayClasses?: IDayClasses
+  inRangeClasses?: IDayClasses
 }
 
 const Day = ({
-  day,
+  children,
   classes,
   activeClasses,
   todayClasses,
@@ -27,7 +26,7 @@ const Day = ({
   isInRange,
   disabled,
   onClick,
-}: DayProps) => {
+}: IDayProps) => {
   return (
     <button
       type='button'
@@ -43,7 +42,7 @@ const Day = ({
       )}
       onClick={onClick}
     >
-      {day}
+      {children}
       <div
         className={classNames(
           'absolute bottom-1 left-1/2 -translate-x-1/2 w-1/2 h-0.5 rounded bg-blue-600',
