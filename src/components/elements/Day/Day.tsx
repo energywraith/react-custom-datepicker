@@ -33,7 +33,7 @@ const Day = ({
       type='button'
       disabled={disabled}
       className={classNames(
-        'w-9 h-9 border-none p-0 hover:bg-transparent',
+        'w-9 h-9 border-none p-0',
         classes?.root,
         isActive
           ? classNames('bg-blue-600 text-white disabled:bg-neutral-200 disabled:text-gray-400', activeClasses?.root)
@@ -41,6 +41,7 @@ const Day = ({
         isToday ? classNames('relative', todayClasses?.root) : null,
         isInRange ? 'bg-blue-100' : null,
       )}
+      withHoverEffect={!isActive}
       onClick={onClick}
     >
       {children}
