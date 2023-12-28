@@ -37,6 +37,7 @@
     "custom-datepicker"
   ],
   "dependencies": {
+    "@floating-ui/react": "^0.26.4",
     "@types/react": "^18.2.45",
     "dayjs": "^1.11.10"
   },
