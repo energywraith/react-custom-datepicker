@@ -1,5 +1,5 @@
 {
-  "name": "react-custom-datepicker",
+  "name": "react-flexible-datepicker",
   "version": "1.0.0",
   "description": "Custom React Datepicker component",
   "main": "./dist/main.js",
@@ -35,7 +35,10 @@
     "typescript",
     "datepicker",
     "react-datepicker",
-    "custom-datepicker"
+    "custom-datepicker",
+    "react-custom-datepicker",
+    "flexible-datepicker",
+    "react-flexible-datepicker"
   ],
   "dependencies": {
     "@floating-ui/react": "^0.26.4",
