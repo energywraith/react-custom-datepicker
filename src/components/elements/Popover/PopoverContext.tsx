@@ -1,6 +1,15 @@
 import React, { createContext, ReactNode, useState } from 'react'
 
-import { offset, size, useClick, useDismiss, useFloating, UseFloatingData, useInteractions } from '@floating-ui/react'
+import {
+  autoUpdate,
+  offset,
+  size,
+  useClick,
+  useDismiss,
+  useFloating,
+  UseFloatingData,
+  useInteractions,
+} from '@floating-ui/react'
 
 const initialState = false
 
@@ -25,6 +34,7 @@ const PopoverProvider = ({ children }: IPopoverProviderProps) => {
   const { refs, floatingStyles, context } = useFloating({
     open: isPanelOpen,
     onOpenChange: setIsPanelOpen,
+    whileElementsMounted: autoUpdate,
     middleware: [
       offset(8),
       size({
