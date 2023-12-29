@@ -10,6 +10,7 @@ interface IPopoverContext {
   floatingStyles: UseFloatingData['floatingStyles']
   getFloatingProps: () => { [key: string]: any }
   getReferenceProps: () => { [key: string]: any }
+  close: () => void
 }
 
 const PopoverContext = createContext<IPopoverContext | null>(null)
@@ -41,7 +42,11 @@ const PopoverProvider = ({ children }: IPopoverProviderProps) => {
 
   const { getReferenceProps, getFloatingProps } = useInteractions([click, dismiss])
 
-  const value = { isPanelOpen, refs, floatingStyles, getReferenceProps, getFloatingProps }
+  const close = () => {
+    setIsPanelOpen(false)
+  }
+
+  const value = { isPanelOpen, refs, floatingStyles, getReferenceProps, getFloatingProps, close }
 
   return <PopoverContext.Provider value={value}>{children}</PopoverContext.Provider>
 }

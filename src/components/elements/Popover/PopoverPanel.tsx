@@ -1,14 +1,12 @@
-import React, { ReactNode, useContext } from 'react'
+import React, { useContext } from 'react'
 import { PopoverContext } from './PopoverContext'
-import { Card } from '../Card'
+import { Card, ICardProps } from '../Card'
 
-interface IPopoverPanelProps {
-  children: ReactNode
-}
+interface IPopoverPanelProps extends ICardProps {}
 
 export type PanelComponent = React.FC<IPopoverPanelProps>
 
-const PopoverPanel: PanelComponent = ({ children }: IPopoverPanelProps) => {
+const PopoverPanel: PanelComponent = ({ children, classes }: IPopoverPanelProps) => {
   const popoverContext = useContext(PopoverContext)
 
   return (
@@ -18,7 +16,7 @@ const PopoverPanel: PanelComponent = ({ children }: IPopoverPanelProps) => {
         style={popoverContext?.floatingStyles}
         {...popoverContext?.getFloatingProps()}
       >
-        <Card>{children}</Card>
+        <Card classes={classes}>{children}</Card>
       </div>
     )
   )

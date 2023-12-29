@@ -25,13 +25,12 @@ export const Default: Story = {
 
 export const IsoWeek: Story = {
   args: {
-    isoWeek: true,
+    ...Default.args,
   },
 }
 
 export const Custom: Story = {
   args: {
-    ...Default.args,
     isoWeek: true,
     classes: {
       month: { root: '!bg-blue-900 text-white' },
