@@ -13,7 +13,7 @@ const Button = forwardRef<Ref, IButtonProps>(({ children, className, withHoverEf
       {...props}
       ref={ref}
       className={classNames(
-        'border border-secondary-200 p-2.5 text-sm text-gray-700 rounded-md disabled:text-gray-400 focus:ring-1',
+        'border border-secondary-200 p-2.5 text-sm text-gray-700 rounded-md disabled:text-gray-400 focus:ring-1 flex items-center justify-center',
         withHoverEffect ? 'hover:enabled:bg-blue-50' : '',
         className,
       )}

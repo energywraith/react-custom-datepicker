@@ -1,27 +1,59 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { Popover } from '../elements/Popover'
+import { CalendarIcon } from '~/components/icons'
+import { Calendar, ICalendarClasses } from '../elements/Calendar'
+import dayjs, { Dayjs } from 'dayjs'
+import { PopoverContext } from '../elements/Popover/PopoverContext'
 
-type Props = {
-  value?: number
+interface IDatePickerClasses {
+  input?: {
+    root: string
+  }
+  calendar?: ICalendarClasses
 }
 
-const DatePicker = ({ value = 0 }: Props) => {
-  const [counter, setCounter] = useState(value)
+export interface IDatePickerProps {
+  value?: string | null
+  onChange?: (dateISOString: string) => void
+  classes?: IDatePickerClasses
+  isoWeek?: boolean
+}
 
-  const onMinus = () => {
-    setCounter((prev) => prev - 1)
-  }
+const DatePicker = ({ value = dayjs().toISOString(), onChange, classes, isoWeek }: IDatePickerProps) => {
+  const popoverContext = useContext(PopoverContext)
 
-  const onPlus = () => {
-    setCounter((prev) => prev + 1)
+  const isDateValid = dayjs(value).isValid()
+
+  const onSelectDate = (date: Dayjs) => {
+    if (onChange) {
+      onChange(date.toISOString())
+    }
+
+    popoverContext?.close()
   }
 
   return (
-    <div>
-      <h1 className='text-blue-600'>Counter: {counter}</h1>
-      <button onClick={onMinus}>-</button>
-      <button onClick={onPlus}>+</button>
-    </div>
+    <>
+      <Popover.Button className={classes?.input?.root}>
+        <CalendarIcon className='w-5 h-5' />
+        <span>{isDateValid ? dayjs(value).format('D MMM YYYY') : 'No date selected'}</span>
+      </Popover.Button>
+      <Popover.Panel>
+        <Calendar
+          date={isDateValid ? dayjs(value) : undefined}
+          onSelectDate={onSelectDate}
+          classes={classes?.calendar}
+          isoWeek={isoWeek}
+        />
+      </Popover.Panel>
+    </>
   )
 }
 
-export { DatePicker }
+const DatePickerInPopoverContext = (props: IDatePickerProps) => (
+  <Popover>
+    <DatePicker {...props} />
+  </Popover>
+)
+
+export { DatePickerInPopoverContext as DatePicker }
