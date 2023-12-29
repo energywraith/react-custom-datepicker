@@ -18,7 +18,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jest.config.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
