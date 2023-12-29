@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Popover } from '../elements/Popover'
 import { CalendarIcon } from '~/components/icons'
 import { Calendar, ICalendarClasses } from '../elements/Calendar'
@@ -14,19 +14,38 @@ interface IDatePickerClasses {
 
 export interface IDatePickerProps {
   value?: string | null
+  defaultValue?: string
   onChange?: (dateISOString: string) => void
   classes?: IDatePickerClasses
   isoWeek?: boolean
 }
 
-const DatePicker = ({ value = dayjs().toISOString(), onChange, classes, isoWeek }: IDatePickerProps) => {
+const DatePickerWithoutContext = ({
+  value: valueFromProps,
+  onChange: onChangeFromProps,
+  defaultValue,
+  classes,
+  isoWeek,
+}: IDatePickerProps) => {
   const popoverContext = useContext(PopoverContext)
+
+  const isControlled = typeof valueFromProps != 'undefined'
+  const hasDefaultValue = typeof defaultValue != 'undefined'
+
+  const [internalValue, setInternalValue] = useState(hasDefaultValue ? defaultValue : '')
+  const value = isControlled ? valueFromProps : internalValue
 
   const isDateValid = dayjs(value).isValid()
 
   const onSelectDate = (date: Dayjs) => {
-    if (onChange) {
-      onChange(date.toISOString())
+    const dateISOString = date.toISOString()
+
+    if (onChangeFromProps) {
+      onChangeFromProps(dateISOString)
+    }
+
+    if (!isControlled) {
+      setInternalValue(dateISOString)
     }
 
     popoverContext?.close()
@@ -50,10 +69,10 @@ const DatePicker = ({ value = dayjs().toISOString(), onChange, classes, isoWeek 
   )
 }
 
-const DatePickerInPopoverContext = (props: IDatePickerProps) => (
+const DatePicker = (props: IDatePickerProps) => (
   <Popover>
-    <DatePicker {...props} />
+    <DatePickerWithoutContext {...props} />
   </Popover>
 )
 
-export { DatePickerInPopoverContext as DatePicker }
+export { DatePicker }
