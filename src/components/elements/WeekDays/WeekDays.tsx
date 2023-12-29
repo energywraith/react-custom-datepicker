@@ -2,10 +2,12 @@ import React from 'react'
 import { TWeekDays, getWeekDays } from '~/lib/date'
 import { Day, IDayClasses } from '../Day'
 
+export type IWeekDayClasses = IDayClasses
+
 export interface IWeekDaysProps {
   customNames?: TWeekDays
   isoWeek?: boolean
-  classes?: IDayClasses
+  classes?: IWeekDayClasses
 }
 
 const WeekDays = ({ customNames, isoWeek, classes }: IWeekDaysProps) => {

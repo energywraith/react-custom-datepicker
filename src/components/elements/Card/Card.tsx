@@ -1,7 +1,7 @@
 import React, { HTMLProps } from 'react'
 import { classNames } from '~/lib/classNames'
 
-interface ICardProps extends HTMLProps<HTMLDivElement> {
+export interface ICardProps extends HTMLProps<HTMLDivElement> {
   classes?: {
     root?: string
   }
