@@ -6,16 +6,6 @@ import { Custom as CalendarCustomStory } from '../elements/Calendar/Calendar.sto
 import { DatePicker, IDatePickerProps } from '../../components/DatePicker'
 import dayjs from 'dayjs'
 
-const DatePickerWithSpacing = (props: IDatePickerProps) => {
-  const [date, onSelectDate] = useState<string | null>(dayjs().set('date', 12).toISOString())
-
-  return (
-    <div className='pt-8 pb-96'>
-      <DatePicker {...props} value={date} onChange={onSelectDate} />
-    </div>
-  )
-}
-
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
   title: 'DatePicker',
@@ -26,27 +16,52 @@ const meta = {
   tags: ['autodocs'],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    // backgroundColor: { control: 'color' },
+    value: { control: 'string' },
+    onChange: { control: 'string' },
+    isoWeek: { control: 'boolean' },
+    classes: { control: 'object' },
   },
 } satisfies Meta<typeof DatePicker>
 
 export default meta
-type Story = StoryObj<typeof meta>
+export type Story = StoryObj<typeof meta>
+
+const UncontrolledDatePicker = (props: IDatePickerProps) => {
+  return <DatePicker {...props} />
+}
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default: Story = {
   args: {},
-  render: DatePickerWithSpacing,
+  render: UncontrolledDatePicker,
+}
+
+export const Uncontrolled: Story = {
+  ...Default,
+}
+
+const ControlledDatePicker = (props: IDatePickerProps) => {
+  const [date, setDate] = useState<string | null>(dayjs().toISOString())
+
+  return <DatePicker {...props} value={date} onChange={setDate} />
+}
+
+export const Controlled: Story = {
+  render: ControlledDatePicker,
+  args: {
+    value: dayjs().toISOString(),
+  },
 }
 
 export const IsoWeek: Story = {
+  ...Default,
   args: {
     isoWeek: true,
   },
-  render: DatePickerWithSpacing,
 }
 
 export const Custom: Story = {
+  ...Default,
   args: {
     isoWeek: true,
     classes: {
@@ -56,5 +71,4 @@ export const Custom: Story = {
       calendar: CalendarCustomStory.args?.classes,
     },
   },
-  render: DatePickerWithSpacing,
 }
