@@ -13,11 +13,12 @@
   },
   "scripts": {
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run prettier && npm run lint",
+    "prepublishOnly": "npm test && npx prettier src --check && npm run lint",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
+    "lint": "npx eslint src",
+    "prettier": "npx prettier src --check",
     "test": "jest --config jest.config.json",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
