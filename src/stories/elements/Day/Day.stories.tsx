@@ -16,9 +16,6 @@ const meta = {
     isToday: { control: 'boolean' },
     isInRange: { control: 'boolean' },
     classes: { control: 'object' },
-    activeClasses: { control: 'object' },
-    todayClasses: { control: 'object' },
-    inRangeClasses: { control: 'object' },
   },
 } satisfies Meta<typeof Day>
 
@@ -64,6 +61,8 @@ export const Custom: Story = {
     ...Default.args,
     isActive: true,
     isToday: true,
-    activeClasses: { root: 'bg-red-600 !text-white', underline: 'bg-white' },
+    classes: {
+      active: { root: 'bg-red-600 !text-white', underline: 'bg-white' },
+    },
   },
 }

@@ -2,13 +2,15 @@ import React, { HTMLProps } from 'react'
 import { classNames } from '~/lib/classNames'
 import { TMonths, getMonthName } from '~/lib/date'
 
+export interface IMonthClasses {
+  root?: string
+}
+
 export interface IMonthProps extends HTMLProps<HTMLDivElement> {
   month: number
   year: number
   customNames?: TMonths
-  classes?: {
-    root?: string
-  }
+  classes?: IMonthClasses
 }
 
 const Month = ({ month, year, customNames, classes }: IMonthProps) => {
@@ -20,7 +22,7 @@ const Month = ({ month, year, customNames, classes }: IMonthProps) => {
   return (
     <div
       className={classNames(
-        'bg-neutral-200 rounded-lg py-2.5 px-2.5 flex-grow text-center text-sm font-semibold',
+        'bg-neutral-200 rounded-lg py-2.5 px-2.5 flex-grow text-center text-sm font-semibold flex items-center justify-center',
         classes?.root,
       )}
     >
