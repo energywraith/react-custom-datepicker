@@ -1,7 +1,8 @@
 {
   "name": "react-flexible-datepicker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom React Datepicker component",
+  "repository": "github:energywraith/react-flexible-datepicker",
   "main": "./dist/main.js",
   "module": "./dist/main.mjs",
   "typings": "./dist/main.d.ts",
